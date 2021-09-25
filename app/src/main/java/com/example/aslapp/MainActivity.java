@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         // define your fragments here
         final Fragment fragment1 = new HomeFragment();
         final Fragment fragment2 = new CameraFragment();
-        final Fragment fragment3 = new ProfileFragment();
+        final ProfileFragment profileFragment = ProfileFragment.newInstance(this);
 
         BottomNavigationView bottomNavigationView =
                 (BottomNavigationView) findViewById(R.id.bottom_navigation);
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             case R.id.action_profile:
                             default:
-                                fragment = fragment3;
+                                fragment = profileFragment;
                                 break;
                         }
                         fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();

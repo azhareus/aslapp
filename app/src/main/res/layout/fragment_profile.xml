@@ -1,14 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="hello profile fragment" />
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ivProfilePic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ivProfilePic"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="Anthony Pena"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvName"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="15dp"
+            android:layout_marginTop="20dp">
+
+            <RelativeLayout
+                android:id="@+id/badgesContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:id="@+id/ivBadge"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/badge" />
+
+                <TextView
+                    android:id="@+id/tvLevel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toRightOf="@+id/ivBadge"
+                    android:text="Level 20"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvMessage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvLevel"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/ivBadge"
+                    android:text="Congratulations, You're Intermediate now"
+                    android:textSize="14sp" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvMessage"
+                    android:layout_toRightOf="@+id/ivBadge"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="10dp"
+                    android:progress="70" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="285dp"
+            android:id="@+id/chartContainer"
+            android:layout_alignParentBottom="true">
+
+            <org.eazegraph.lib.charts.ValueLineChart
+                android:id="@+id/cubiclinechart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:egUseCubic="true"
+                app:egUseOverlapFill="true"
+                app:egLegendHeight="40dp"
+                app:egIndicatorLineColor="@color/white"
+                app:egShowStandardValue="true"/>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+
 
 </FrameLayout>
