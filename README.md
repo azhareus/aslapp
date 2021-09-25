@@ -1,4 +1,4 @@
-# aslapp
+# ASLApp
 
 - **Category:** Communications / Education / Travel
 - **Mobile:** This app would be primarily developed for mobile but can be ported to other platforms in the future, as the functionality of the app and the libraries used are adaptable to other devices and development cycles.
