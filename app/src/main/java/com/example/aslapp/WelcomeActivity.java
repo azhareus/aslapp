@@ -17,9 +17,9 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.Arrays;
 import java.util.List;
 
-public class LoginActivity extends AppCompatActivity {
+public class WelcomeActivity extends AppCompatActivity {
 
-    public static final String TAG = LoginActivity.class.getSimpleName();
+    public static final String TAG = WelcomeActivity.class.getSimpleName();
     public static final int AUTHUI_REQUEST_CODE = 12;
 
     @Override
