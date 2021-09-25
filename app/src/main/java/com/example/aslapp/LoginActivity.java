@@ -1,10 +1,14 @@
 package com.example.aslapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,6 +27,8 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.Arrays;
 import java.util.List;
 
+import es.dmoral.toasty.Toasty;
+
 public class LoginActivity extends AppCompatActivity {
 
     public static final String TAG = LoginActivity.class.getSimpleName();
@@ -31,6 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     // Declare variables
     private FirebaseAuth mAuth;
     private ActivityLoginBinding binding;
+    private Context context = LoginActivity.this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,17 +59,28 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String user = binding.etUsername.getText().toString();
                 String pass = binding.etUsername.getText().toString();
-                onSignIn(user, pass);
+                // Check if e-mail is valid
+                if (isValidEmail(user)) {
+                    // if valid -> sign in
+                    onSignIn(user, pass);
+                } else {
+                    Toasty.error(context, "Invalid email/password.", Toast.LENGTH_SHORT, true).show();
+                }
             }
         });
 
         binding.rlSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(LoginActivity.this, SignupActivity.class);
+                Intent i = new Intent(context, SignupActivity.class);
                 startActivity(i);
             }
         });
+    }
+
+    // Method to check if provided e-mail address is valid
+    public static boolean isValidEmail(CharSequence target) {
+        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
 
     public void onEmailSignup(String email, String password){
@@ -73,11 +91,12 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
+                            Toasty.success(context, "Account created!", Toast.LENGTH_SHORT, true).show();
                             goHome();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                            Toasty.error(context, "Authentication failed.", Toast.LENGTH_SHORT, true).show();
                             // Maybe go back??
 
                         }
@@ -98,8 +117,10 @@ public class LoginActivity extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(LoginActivity.this, "Account not found, please sign up.",
-                                    Toast.LENGTH_SHORT).show();
+                            Toasty.info(context, "Account not found - please sign up.", Toast.LENGTH_SHORT, true).show();
+                            // hideKeyboard(binding.getRoot());
+                            Intent i = new Intent(context, SignupActivity.class);
+                            startActivity(i);
                         }
                     }
                 });
@@ -121,6 +142,12 @@ public class LoginActivity extends AppCompatActivity {
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
         this.finish();
+    }
+
+    // Method that hides soft keyboard
+    public void hideKeyboard(View view) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     // TODO: Delete after we implement our own layouts
