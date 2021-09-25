@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "178180385507",
+    "project_id": "aslapp-f7277",
+    "storage_bucket": "aslapp-f7277.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:178180385507:android:c3c9a846c453b072aa33d6",
+        "android_client_info": {
+          "package_name": "com.example.aslapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "178180385507-auvt8ddqp3fh3ghfunfdm4obr5c3q0ro.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.aslapp",
+            "certificate_hash": "526b82e1faf7ab60e0e4055dec75607534facab8"
+          }
+        },
+        {
+          "client_id": "178180385507-34rmp4dncth4gnpmiu8728iosg6vh796.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBH1vUg08iKZNrlHFw6U4Kt7VddoEcrioo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "178180385507-34rmp4dncth4gnpmiu8728iosg6vh796.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
