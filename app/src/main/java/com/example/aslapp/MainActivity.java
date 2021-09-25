@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         final FragmentManager fragmentManager = getSupportFragmentManager();
 
         // define your fragments here
-        final Fragment fragment1 = new HomeFragment();
+        final HomeFragment homeFragment = HomeFragment.newInstance(this);
         final Fragment fragment2 = new CameraFragment();
         final ProfileFragment profileFragment = ProfileFragment.newInstance(this);
 
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                         Fragment fragment;
                         switch (item.getItemId()) {
                             case R.id.action_home:
-                                fragment = fragment1;
+                                fragment = homeFragment;
                                 break;
                             case R.id.action_camera:
                                 fragment = fragment2;
