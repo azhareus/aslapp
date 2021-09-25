@@ -1,23 +1,18 @@
-package com.example.aslapp.fragments;
+package com.example.aslapp;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 
-import androidx.fragment.app.Fragment;
-
-import com.example.aslapp.ColorBlobDetector;
-import com.example.aslapp.R;
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
+import org.opencv.android.CameraBridgeViewBase.CvCameraViewFrame;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Core;
@@ -31,16 +26,11 @@ import org.opencv.imgproc.Imgproc;
 
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CameraFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class CameraFragment extends Fragment implements View.OnTouchListener,
+
+public class CameraActivity extends AppCompatActivity implements View.OnTouchListener,
         CameraBridgeViewBase.CvCameraViewListener2 {
 
-    Context context;
-    private static final String TAG = "CameraFragment";
+    private static final String TAG = "CameraActivity";
 
     private boolean mIsColorSelected = false;
     private Mat mRgba;
@@ -50,17 +40,16 @@ public class CameraFragment extends Fragment implements View.OnTouchListener,
     private Mat mSpectrum;
     private Size SPECTRUM_SIZE;
     private Scalar CONTOUR_COLOR;
-
     private CameraBridgeViewBase mOpenCvCameraView;
 
-    private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(context) {
+    private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
         @Override
         public void onManagerConnected(int status) {
             switch (status) {
                 case LoaderCallbackInterface.SUCCESS: {
                     Log.i(TAG, "OpenCV loaded successfully");
                     mOpenCvCameraView.enableView();
-                    mOpenCvCameraView.setOnTouchListener(CameraFragment.this);
+                    mOpenCvCameraView.setOnTouchListener(CameraActivity.this);
                 }
                 break;
                 default: {
@@ -71,59 +60,24 @@ public class CameraFragment extends Fragment implements View.OnTouchListener,
         }
     };
 
-
-    public CameraFragment() {
-        // Required empty public constructor
-    }
-
-    public static CameraFragment newInstance(Context context) {
-        CameraFragment fragment = new CameraFragment();
-        fragment.context = context;
-        return fragment;
+    public CameraActivity() {
+        Log.i(TAG, "Instantiated new " + this.getClass());
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         Log.i(TAG, "called onCreate");
-        getActivity().requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
-//        setContentView(R.layout.color_blob_detection_activity_surface_view);
+        setContentView(R.layout.color_blob_detection_activity_surface_view);
 
         mOpenCvCameraView =
-                (CameraBridgeViewBase) getView().findViewById(R.id.color_blob_detection_activity_surface_view);
+                (CameraBridgeViewBase) findViewById(R.id.color_blob_detection_activity_surface_view);
         mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
         mOpenCvCameraView.setCvCameraViewListener(this);
-
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.color_blob_detection_activity_surface_view, container,
-                false);
     }
-
-//    @Override
-//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-//        Log.i(TAG, "called onCreate");
-//        super.onViewCreated(view, savedInstanceState);
-//        getActivity().requestWindowFeature(Window.FEATURE_NO_TITLE);
-//        getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-//
-//        setContentView(R.layout.color_blob_detection_activity_surface_view);
-//
-//        mOpenCvCameraView =
-//                (CameraBridgeViewBase) view.findViewById(R.id
-//                .color_blob_detection_activity_surface_view);
-//        mOpenCvCameraView.setVisibility(SurfaceView.VISIBLE);
-//        mOpenCvCameraView.setCvCameraViewListener(this);
-
-
-//    }
 
     @Override
     public void onPause() {
@@ -138,14 +92,12 @@ public class CameraFragment extends Fragment implements View.OnTouchListener,
         if (!OpenCVLoader.initDebug()) {
             Log.d(TAG, "Internal OpenCV library not found. Using OpenCV Manager for " +
                     "initialization");
-            OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, context,
-                    mLoaderCallback);
+            OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_0_0, this, mLoaderCallback);
         } else {
             Log.d(TAG, "OpenCV library found inside package. Using it!");
             mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
         }
     }
-
 
     public void onDestroy() {
         super.onDestroy();
@@ -202,9 +154,8 @@ public class CameraFragment extends Fragment implements View.OnTouchListener,
 
         mBlobColorRgba = converScalarHsv2Rgba(mBlobColorHsv);
 
-        Log.i(TAG,
-                "Touched rgba color: (" + mBlobColorRgba.val[0] + ", " + mBlobColorRgba.val[1] +
-                        ", " + mBlobColorRgba.val[2] + ", " + mBlobColorRgba.val[3] + ")");
+        Log.i(TAG, "Touched rgba color: (" + mBlobColorRgba.val[0] + ", " + mBlobColorRgba.val[1] +
+                ", " + mBlobColorRgba.val[2] + ", " + mBlobColorRgba.val[3] + ")");
 
         mDetector.setHsvColor(mBlobColorHsv);
 
@@ -219,7 +170,7 @@ public class CameraFragment extends Fragment implements View.OnTouchListener,
         return false; // don't need subsequent touch events
     }
 
-    public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
+    public Mat onCameraFrame(CvCameraViewFrame inputFrame) {
         mRgba = inputFrame.rgba();
 
         if (mIsColorSelected) {
@@ -231,8 +182,7 @@ public class CameraFragment extends Fragment implements View.OnTouchListener,
             Mat colorLabel = mRgba.submat(4, 68, 4, 68);
             colorLabel.setTo(mBlobColorRgba);
 
-            Mat spectrumLabel = mRgba.submat(4, 4 + mSpectrum.rows(), 70,
-                    70 + mSpectrum.cols());
+            Mat spectrumLabel = mRgba.submat(4, 4 + mSpectrum.rows(), 70, 70 + mSpectrum.cols());
             mSpectrum.copyTo(spectrumLabel);
         }
 
