@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -21,6 +22,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
     public static final String TAG = WelcomeActivity.class.getSimpleName();
     public static final int AUTHUI_REQUEST_CODE = 12;
+    Button btLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,9 @@ public class WelcomeActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_main);
+
+        btLogin = findViewById(R.id.btLogin);
+        btLogin.setOnClickListener(v -> goLoginRegister());
 
         if(FirebaseAuth.getInstance().getCurrentUser() != null) {
             Log.d(TAG, "User not null " + FirebaseAuth.getInstance().getCurrentUser().getEmail());
@@ -45,6 +50,8 @@ public class WelcomeActivity extends AppCompatActivity {
 
     public void goLoginRegister(){
         List<AuthUI.IdpConfig> provider = Arrays.asList(
+                new AuthUI.IdpConfig.GoogleBuilder().build(),
+                //new AuthUI.IdpConfig.FacebookBuilder().build(),
                 new AuthUI.IdpConfig.EmailBuilder().build(),
                 new AuthUI.IdpConfig.PhoneBuilder().build()
         );

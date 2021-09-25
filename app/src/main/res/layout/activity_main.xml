@@ -43,7 +43,7 @@
         android:textSize="16sp" />
 
     <Button
-        android:id="@+id/btSignUp"
+        android:id="@+id/btLogin"
         android:layout_width="wrap_content"
         android:layout_height="55dp"
         android:layout_alignParentBottom="true"
@@ -53,7 +53,6 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="5dp"
         android:backgroundTint="#333333"
-        android:onClick="goLoginRegister"
         android:text="Get Started"
         android:textColor="#FFFFFF"
         app:cornerRadius="20dp"
