@@ -88,10 +88,19 @@
 
         </androidx.cardview.widget.CardView>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/chartContainer"
+            android:layout_centerHorizontal="true"
+            android:text="Time spent learning"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="285dp"
+            android:elevation="10dp"
             android:id="@+id/chartContainer"
             android:layout_alignParentBottom="true">
 

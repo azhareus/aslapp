@@ -21,6 +21,8 @@ public class HomeFragment extends Fragment {
     ImageView ivLevel;
     ImageView ivReview;
     ImageView ivTest;
+    ImageView ivLogo;
+    LearnFragment learnFragment;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -29,6 +31,7 @@ public class HomeFragment extends Fragment {
     public static HomeFragment newInstance(Context context) {
         HomeFragment fragment = new HomeFragment();
         fragment.context = context;
+        fragment.learnFragment = LearnFragment.newInstance(context, fragment);
         return fragment;
     }
 
@@ -51,26 +54,29 @@ public class HomeFragment extends Fragment {
         ivLevel = view.findViewById(R.id.ivLevel);
         ivReview = view.findViewById(R.id.ivReview);
         ivTest = view.findViewById(R.id.ivTest);
+        ivLogo = view.findViewById(R.id.ivLogo);
+
+        // Set Logo
+        Glide.with(context)
+                .load(R.drawable.logo)
+                .circleCrop()
+                .override(250,250)
+                .into(ivLogo);
 
         Glide.with(context)
-                .load(R.drawable.ic_baseline_home_24)
-                .override(60,70)
-                .into(ivLevel);
-
-        Glide.with(context)
-                .load(R.drawable.ic_baseline_camera_24)
-                .override(60,70)
-                .into(ivReview);
-
-        Glide.with(context)
-                .load(R.drawable.ic_baseline_person_24)
-                .override(60,70)
-                .into(ivTest);
-
-        Glide.with(context)
-                .load(R.drawable.profilepic)
+                .load(R.drawable.profileplaceholder)
                 .circleCrop()
                 .override(175,175)
                 .into(ivProfilePic);
+
+        ivTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .add(R.id.flContainer, learnFragment, "tag")
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
     }
 }

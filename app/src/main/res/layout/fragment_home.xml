@@ -19,12 +19,11 @@
 
             <ImageView
                 android:id="@+id/ivLogo"
-                android:layout_width="70dp"
-                android:layout_height="75dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_alignParentLeft="true"
                 android:layout_marginStart="10dp"
-                app:srcCompat="@android:drawable/ic_lock_silent_mode_off"
-                app:tint="@color/black" />
+                app:srcCompat="@drawable/logo" />
 
             <TextView
                 android:id="@+id/tvName"
@@ -51,8 +50,8 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/black"
-            android:layout_marginLeft="0dp"/>
+            android:layout_marginLeft="0dp"
+            android:background="#4E4E4E" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -80,8 +79,7 @@
                         android:layout_height="70dp"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="15dp"
-                        app:tint="@color/black"
-                        tools:srcCompat="@android:drawable/ic_menu_set_as" />
+                        app:srcCompat="@drawable/leveimage" />
 
                     <TextView
                         android:id="@+id/tvLevelup"
@@ -132,8 +130,7 @@
                         android:layout_height="70dp"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="15dp"
-                        app:tint="@color/black"
-                        tools:srcCompat="@android:drawable/ic_menu_my_calendar" />
+                        app:srcCompat="@drawable/bookimage" />
 
                     <TextView
                         android:id="@+id/tvReview"
@@ -184,8 +181,7 @@
                         android:layout_height="70dp"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="15dp"
-                        app:tint="@color/black"
-                        tools:srcCompat="@android:drawable/ic_menu_edit" />
+                        app:srcCompat="@drawable/learnimage" />
 
                     <TextView
                         android:id="@+id/tvTest"
