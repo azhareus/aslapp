@@ -34,7 +34,7 @@
         android:layout_below="@id/ivLogo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:hint="Phone number, email or username"
+        android:hint="Email"
         android:background="#EEEEEE"
         android:padding="15dp"
         android:textSize="13sp"/>

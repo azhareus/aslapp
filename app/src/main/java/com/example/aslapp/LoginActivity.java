@@ -83,27 +83,6 @@ public class LoginActivity extends AppCompatActivity {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
 
-    public void onEmailSignup(String email, String password){
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success");
-                            Toasty.success(context, "Account created!", Toast.LENGTH_SHORT, true).show();
-                            goHome();
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toasty.error(context, "Authentication failed.", Toast.LENGTH_SHORT, true).show();
-                            // Maybe go back??
-
-                        }
-                    }
-                });
-    }
-
     public void onSignIn(String email, String password){
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -120,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toasty.info(context, "Account not found - please sign up.", Toast.LENGTH_SHORT, true).show();
                             // hideKeyboard(binding.getRoot());
                             Intent i = new Intent(context, SignupActivity.class);
+                            i.putExtra("email", email);
                             startActivity(i);
                         }
                     }
