@@ -46,12 +46,6 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         Fragment fragment;
                         switch (item.getItemId()) {
-                            case R.id.action_home:
-                                fragment = fragment1;
-                                fragmentManager.beginTransaction().replace(R.id.flContainer,
-                                        fragment)
-                                        .commit();
-                                break;
                             case R.id.action_profile:
                                 fragment = fragment2;
                                 fragmentManager.beginTransaction().replace(R.id.flContainer,
