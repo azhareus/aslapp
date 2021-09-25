@@ -37,7 +37,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void goLogin() {
-        Intent i = new Intent(this, LoginActivity.class);
+        Intent i = new Intent(this, WelcomeActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
