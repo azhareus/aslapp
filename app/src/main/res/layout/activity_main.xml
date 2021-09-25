@@ -9,50 +9,25 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="158dp"
-        android:layout_height="150dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="150dp"
-        app:srcCompat="@android:drawable/ic_lock_silent_mode_off"
+        app:srcCompat="@drawable/aslapp_logo"
         app:tint="#000000" />
-
-    <TextView
-        android:id="@+id/tvAppTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="aslapp."
-        android:textColor="#000000"
-        android:textSize="34sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/tvCaption"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvAppTitle"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:maxWidth="200dp"
-        android:text="Translate sign language with your camera."
-        android:textAlignment="center"
-        android:textColor="#333333"
-        android:textSize="16sp" />
 
     <Button
         android:id="@+id/btLogin"
         android:layout_width="wrap_content"
         android:layout_height="55dp"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="5dp"
-        android:backgroundTint="#333333"
+        android:backgroundTint="#000000"
         android:text="Get Started"
         android:textColor="#FFFFFF"
         app:cornerRadius="20dp"
