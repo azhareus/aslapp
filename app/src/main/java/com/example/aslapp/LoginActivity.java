@@ -46,7 +46,8 @@ public class LoginActivity extends AppCompatActivity {
 
     public void goLoginRegister(){
         List<AuthUI.IdpConfig> provider = Arrays.asList(
-                new AuthUI.IdpConfig.EmailBuilder().build()
+                new AuthUI.IdpConfig.EmailBuilder().build(),
+                new AuthUI.IdpConfig.PhoneBuilder().build()
         );
 
         startActivityForResult(AuthUI.getInstance()
