@@ -85,24 +85,28 @@
                 android:id="@+id/radioQuestions">
 
                 <RadioButton
+                    android:id="@+id/r1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="ASL"/>
+                    android:text="ASL" />
 
                 <RadioButton
+                    android:id="@+id/r2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="FIU"/>
+                    android:text="FIU" />
 
                 <RadioButton
+                    android:id="@+id/r3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="AOL"/>
+                    android:text="AOL" />
 
                 <RadioButton
+                    android:id="@+id/r4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="LOL"/>
+                    android:text="LOL" />
             </RadioGroup>
         </androidx.cardview.widget.CardView>
 
