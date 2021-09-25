@@ -40,7 +40,6 @@ public class LoginActivity extends AppCompatActivity {
             this.finish();
         }else{
             Log.d(TAG, "User is null");
-            goLoginRegister();
         }
     }
 
