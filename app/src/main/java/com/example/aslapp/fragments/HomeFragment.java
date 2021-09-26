@@ -25,7 +25,9 @@ public class HomeFragment extends Fragment {
     ImageView ivTest;
     ImageView ivLogo;
     CardView cvLearn;
+    CardView cvReview;
     LearnFragment learnFragment;
+    ReviewFragment reviewFragment;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -35,6 +37,7 @@ public class HomeFragment extends Fragment {
         HomeFragment fragment = new HomeFragment();
         fragment.context = context;
         fragment.learnFragment = LearnFragment.newInstance(context, fragment);
+        fragment.reviewFragment = ReviewFragment.newInstance(context, fragment);
         return fragment;
     }
 
@@ -59,6 +62,7 @@ public class HomeFragment extends Fragment {
         ivTest = view.findViewById(R.id.ivTest);
         ivLogo = view.findViewById(R.id.ivLogo);
         cvLearn = view.findViewById(R.id.cardTest);
+        cvReview = view.findViewById(R.id.cardReview);
 
         // Set Logo
         Glide.with(context)
@@ -73,15 +77,19 @@ public class HomeFragment extends Fragment {
                 .override(175,175)
                 .into(ivProfilePic);
 
-        cvLearn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .add(R.id.flContainer, learnFragment, "tag")
-                        .addToBackStack(null)
-                        .commit();
-                HomeActivity.bottomNavigationView.setVisibility(View.GONE);
-            }
+        cvLearn.setOnClickListener(v -> {
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .add(R.id.flContainer, learnFragment, "tag")
+                    .addToBackStack(null)
+                    .commit();
+            HomeActivity.bottomNavigationView.setVisibility(View.GONE);
+        });
+        cvReview.setOnClickListener(v -> {
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .add(R.id.flContainer, reviewFragment, "tag")
+                    .addToBackStack(null)
+                    .commit();
+            HomeActivity.bottomNavigationView.setVisibility(View.GONE);
         });
     }
 }
