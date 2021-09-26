@@ -2,38 +2,61 @@ package com.example.aslapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.aslapp.fragments.CameraFragment;
+import com.example.aslapp.fragments.HomeFragment;
+import com.example.aslapp.fragments.ProfileFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {
 
     public static final String TAG = HomeActivity.class.getSimpleName();
-    TextView tempLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        ///----------------------DELETE ME-----------------------
-        tempLogout = findViewById(R.id.textView2);
-        tempLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                if(FirebaseAuth.getInstance().getCurrentUser() == null){
-                    goLogin();
-                }
-            }
-        });
-        // -----------------------------------------------------------------
+        final FragmentManager fragmentManager = getSupportFragmentManager();
 
-        Log.d(TAG, "In main!");
+        // define your fragments here
+        final HomeFragment homeFragment = HomeFragment.newInstance(this);
+        final Fragment fragment2 = new CameraFragment();
+        final ProfileFragment profileFragment = ProfileFragment.newInstance(this);
+
+        BottomNavigationView bottomNavigationView =
+                (BottomNavigationView) findViewById(R.id.bottom_navigation);
+
+        // handle navigation selection
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        Fragment fragment;
+                        switch (item.getItemId()) {
+                            case R.id.action_home:
+                                fragment = homeFragment;
+                                break;
+                            case R.id.action_camera:
+                                fragment = fragment2;
+                                break;
+                            case R.id.action_profile:
+                            default:
+                                fragment = profileFragment;
+                                break;
+                        }
+                        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
+                        return true;
+                    }
+                });
+        // Set default selection
+        bottomNavigationView.setSelectedItemId(R.id.action_home);
     }
 
     private void goLogin() {
