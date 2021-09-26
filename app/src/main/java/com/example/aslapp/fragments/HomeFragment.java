@@ -25,8 +25,10 @@ public class HomeFragment extends Fragment {
     ImageView ivTest;
     ImageView ivLogo;
     CardView cvLearn;
-    CardView cvLevel;
+    CardView cvReview;
     LearnFragment learnFragment;
+    ReviewFragment reviewFragment;
+    CardView cvLevel;
     LevelsFragment levelsFragment;
 
     public HomeFragment() {
@@ -37,6 +39,7 @@ public class HomeFragment extends Fragment {
         HomeFragment fragment = new HomeFragment();
         fragment.context = context;
         fragment.learnFragment = LearnFragment.newInstance(context, fragment);
+        fragment.reviewFragment = ReviewFragment.newInstance(context, fragment);
         fragment.levelsFragment = LevelsFragment.newInstance(context);
         return fragment;
     }
@@ -62,6 +65,7 @@ public class HomeFragment extends Fragment {
         ivTest = view.findViewById(R.id.ivTest);
         ivLogo = view.findViewById(R.id.ivLogo);
         cvLearn = view.findViewById(R.id.cardTest);
+        cvReview = view.findViewById(R.id.cardReview);
         cvLevel = view.findViewById(R.id.cardLevel);
 
         // Set Logo
@@ -77,22 +81,24 @@ public class HomeFragment extends Fragment {
                 .override(175,175)
                 .into(ivProfilePic);
 
+        cvLearn.setOnClickListener(v -> {
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .add(R.id.flContainer, learnFragment, "tag")
+                    .addToBackStack(null)
+                    .commit();
+            HomeActivity.bottomNavigationView.setVisibility(View.GONE);
+        });
+        cvReview.setOnClickListener(v -> {
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .add(R.id.flContainer, reviewFragment, "tag")
+                    .addToBackStack(null)
+                    .commit();
+            HomeActivity.bottomNavigationView.setVisibility(View.GONE);
         cvLevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .add(R.id.flContainer, levelsFragment, "tag")
-                        .addToBackStack(null)
-                        .commit();
-                HomeActivity.bottomNavigationView.setVisibility(View.GONE);
-            }
-        });
-
-        cvLearn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .add(R.id.flContainer, learnFragment, "tag")
                         .addToBackStack(null)
                         .commit();
                 HomeActivity.bottomNavigationView.setVisibility(View.GONE);
