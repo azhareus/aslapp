@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,15 +28,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_main);
 
         final FragmentManager fragmentManager = getSupportFragmentManager();
-
-        // define your fragments here
-        final Fragment fragment1 = new HomeFragment();
-        final Fragment fragment2 = new ProfileFragment();
-//        final Fragment fragment3 = new ProfileFragment();
-
+        final HomeFragment homeFragment = HomeFragment.newInstance(this);
+        final ProfileFragment profileFragment = ProfileFragment.newInstance(this);
+      
         BottomNavigationView bottomNavigationView =
                 (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
@@ -47,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                         Fragment fragment;
                         switch (item.getItemId()) {
                             case R.id.action_profile:
-                                fragment = fragment2;
+                                fragment = profileFragment;
                                 fragmentManager.beginTransaction().replace(R.id.flContainer,
                                         fragment)
                                         .commit();
@@ -57,21 +59,18 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(intent);
                                 break;
                             default:
-                                fragment = fragment1;
+                                fragment = homeFragment;
                                 fragmentManager.beginTransaction().replace(R.id.flContainer,
                                         fragment)
                                         .commit();
                                 break;
 
                         }
-//                        fragmentManager.beginTransaction().replace(R.id.flContainer, fragment)
-//                                .commit();
                         return true;
                     }
                 });
         // Set default selection
         bottomNavigationView.setSelectedItemId(R.id.action_home);
-
     }
 
     public void onLaunchCamera(View view) {
