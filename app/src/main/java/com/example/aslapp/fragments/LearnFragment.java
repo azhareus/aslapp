@@ -2,6 +2,7 @@ package com.example.aslapp.fragments;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +12,12 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
@@ -32,6 +35,7 @@ public class LearnFragment extends Fragment {
     List<List<String>> questions;
     ProgressBar progressBar;
     ImageView ivQuestion;
+    TextView tvProgress;
     RadioGroup group;
     RadioButton q1;
     RadioButton q2;
@@ -67,6 +71,7 @@ public class LearnFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         questions = new ArrayList<>();
         createQuestions();
+        tvProgress = view.findViewById(R.id.tvProgress);
         group = view.findViewById(R.id.radioQuestions);
         q1 = view.findViewById(R.id.r1);
         q2 = view.findViewById(R.id.r2);
@@ -77,8 +82,12 @@ public class LearnFragment extends Fragment {
 
         btSubmit = view.findViewById(R.id.btSubmit);
         btSubmit.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onClick(View v) {
+                tvProgress.setText("50% completed");
+                progressBar.setProgress(progressBar.getProgress() + 10, true);
+
                 if(question == 1) {
                     if(group.getCheckedRadioButtonId() == R.id.r2){
                         Toast.makeText(getActivity(), "Correct!", Toast.LENGTH_SHORT).show();
