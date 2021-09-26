@@ -28,6 +28,8 @@ public class HomeFragment extends Fragment {
     CardView cvReview;
     LearnFragment learnFragment;
     ReviewFragment reviewFragment;
+    CardView cvLevel;
+    LevelsFragment levelsFragment;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -38,6 +40,7 @@ public class HomeFragment extends Fragment {
         fragment.context = context;
         fragment.learnFragment = LearnFragment.newInstance(context, fragment);
         fragment.reviewFragment = ReviewFragment.newInstance(context, fragment);
+        fragment.levelsFragment = LevelsFragment.newInstance(context);
         return fragment;
     }
 
@@ -63,6 +66,7 @@ public class HomeFragment extends Fragment {
         ivLogo = view.findViewById(R.id.ivLogo);
         cvLearn = view.findViewById(R.id.cardTest);
         cvReview = view.findViewById(R.id.cardReview);
+        cvLevel = view.findViewById(R.id.cardLevel);
 
         // Set Logo
         Glide.with(context)
@@ -90,6 +94,15 @@ public class HomeFragment extends Fragment {
                     .addToBackStack(null)
                     .commit();
             HomeActivity.bottomNavigationView.setVisibility(View.GONE);
+        cvLevel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .add(R.id.flContainer, levelsFragment, "tag")
+                        .addToBackStack(null)
+                        .commit();
+                HomeActivity.bottomNavigationView.setVisibility(View.GONE);
+            }
         });
     }
 }
