@@ -25,7 +25,8 @@
         android:layout_marginStart="280dp"
         android:layout_marginTop="50dp"
         app:srcCompat="@drawable/aslapp_logo"
-        tools:srcCompat="@drawable/aslapp_logo" />
+        tools:srcCompat="@drawable/aslapp_logo"
+        android:tint="@color/black"/>
 
     <EditText
         android:id="@+id/etUsername"
@@ -61,7 +62,7 @@
         android:layout_alignStart="@+id/etUsername"
         android:layout_alignEnd="@+id/etUsername"
         android:layout_marginTop="13dp"
-        android:backgroundTint="#333333"
+        android:backgroundTint="@color/black"
         android:text="Log In"
         android:textAllCaps="false"
         android:textSize="15sp" />
@@ -209,7 +210,7 @@
         android:layout_marginTop="2dp"
         android:layout_toEndOf="@+id/ivGoogleLogo"
         android:text="Login with Google"
-        android:textColor="#333333"
+        android:textColor="#777777"
         android:textStyle="bold" />
 
 
