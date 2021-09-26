@@ -27,6 +27,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:text="Anthony Pena"
+            android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -50,8 +51,12 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_alignParentLeft="true"
-                    android:layout_margin="5dp"
-                    android:src="@drawable/badge" />
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/medal"
+                    app:srcCompat="@drawable/medal" />
 
                 <TextView
                     android:id="@+id/tvLevel"
@@ -61,6 +66,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_toRightOf="@+id/ivBadge"
                     android:text="Level 20"
+                    android:textColor="#000000"
                     android:textStyle="bold" />
 
                 <TextView

@@ -121,6 +121,7 @@ public class LoginActivity extends AppCompatActivity {
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
+        Toasty.success(context, "Welcome back!", Toast.LENGTH_SHORT, true).show();
         this.finish();
     }
 

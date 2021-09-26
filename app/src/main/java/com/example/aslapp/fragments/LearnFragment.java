@@ -21,6 +21,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.example.aslapp.HomeActivity;
 import com.example.aslapp.R;
 
 import java.util.ArrayList;
@@ -69,6 +70,7 @@ public class LearnFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         questions = new ArrayList<>();
         createQuestions();
         tvProgress = view.findViewById(R.id.tvProgress);
@@ -150,5 +152,11 @@ public class LearnFragment extends Fragment {
         q4.setText(currentQuestion.get(3));
 
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        HomeActivity.bottomNavigationView.setVisibility(View.VISIBLE);
     }
 }

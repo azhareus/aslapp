@@ -53,7 +53,7 @@ public class ProfileFragment extends Fragment {
 
         // TODO: Change the drawable to the current user's profile pic
         Glide.with(context)
-                .load(R.drawable.profilepic)
+                .load(R.drawable.boy)
                 .circleCrop()
                 .override(300, 300)
                 .into(ivProfile);

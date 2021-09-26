@@ -9,9 +9,11 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.example.aslapp.HomeActivity;
 import com.example.aslapp.R;
 
 public class HomeFragment extends Fragment {
@@ -22,6 +24,7 @@ public class HomeFragment extends Fragment {
     ImageView ivReview;
     ImageView ivTest;
     ImageView ivLogo;
+    CardView cvLearn;
     LearnFragment learnFragment;
 
     public HomeFragment() {
@@ -55,6 +58,7 @@ public class HomeFragment extends Fragment {
         ivReview = view.findViewById(R.id.ivReview);
         ivTest = view.findViewById(R.id.ivTest);
         ivLogo = view.findViewById(R.id.ivLogo);
+        cvLearn = view.findViewById(R.id.cardTest);
 
         // Set Logo
         Glide.with(context)
@@ -64,18 +68,19 @@ public class HomeFragment extends Fragment {
                 .into(ivLogo);
 
         Glide.with(context)
-                .load(R.drawable.profileplaceholder)
+                .load(R.drawable.boy)
                 .circleCrop()
                 .override(175,175)
                 .into(ivProfilePic);
 
-        ivTest.setOnClickListener(new View.OnClickListener() {
+        cvLearn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .add(R.id.flContainer, learnFragment, "tag")
                         .addToBackStack(null)
                         .commit();
+                HomeActivity.bottomNavigationView.setVisibility(View.GONE);
             }
         });
     }

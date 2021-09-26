@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.LearnFragment"
-    android:background="#DDDDDD">
+    android:background="@color/white">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -19,7 +19,8 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:progress="40" />
+            android:progress="40"
+            android:progressTint="#FFD700"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -36,19 +37,21 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/tvProgress"
-            android:layout_marginTop="25dp"
-            android:text="What does this sign means?"
+            android:layout_marginTop="50dp"
+            android:text="What does this sign mean?"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/questionCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvQuestionlabel"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="25dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
+            android:elevation="10dp"
             android:background="@drawable/rounded"
             app:cardCornerRadius="10dp">
 
@@ -62,7 +65,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_margin="10dp"
-                    app:srcCompat="@drawable/questionone" />
+                    app:srcCompat="@drawable/questionone"
+                    app:tint="@color/black"/>
 
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
@@ -74,6 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@id/questionCard"
             android:layout_alignEnd="@+id/questionCard"
+            android:elevation="10dp"
             app:cardCornerRadius="15dp"
             android:id="@+id/answersCard">
 
@@ -115,11 +120,12 @@
             android:layout_height="wrap_content"
             android:id="@+id/btSubmit"
             android:text="Submit"
+            android:textColor="@color/white"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_alignStart="@id/questionCard"
+            android:layout_alignEnd="@id/questionCard"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="#333333"/>
+            android:backgroundTint="#000000"/>
 
     </RelativeLayout>
 
