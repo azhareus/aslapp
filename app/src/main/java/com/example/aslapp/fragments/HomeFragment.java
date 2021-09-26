@@ -25,7 +25,9 @@ public class HomeFragment extends Fragment {
     ImageView ivTest;
     ImageView ivLogo;
     CardView cvLearn;
+    CardView cvLevel;
     LearnFragment learnFragment;
+    LevelsFragment levelsFragment;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -35,6 +37,7 @@ public class HomeFragment extends Fragment {
         HomeFragment fragment = new HomeFragment();
         fragment.context = context;
         fragment.learnFragment = LearnFragment.newInstance(context, fragment);
+        fragment.levelsFragment = LevelsFragment.newInstance(context);
         return fragment;
     }
 
@@ -59,6 +62,7 @@ public class HomeFragment extends Fragment {
         ivTest = view.findViewById(R.id.ivTest);
         ivLogo = view.findViewById(R.id.ivLogo);
         cvLearn = view.findViewById(R.id.cardTest);
+        cvLevel = view.findViewById(R.id.cardLevel);
 
         // Set Logo
         Glide.with(context)
@@ -72,6 +76,17 @@ public class HomeFragment extends Fragment {
                 .circleCrop()
                 .override(175,175)
                 .into(ivProfilePic);
+
+        cvLevel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .add(R.id.flContainer, levelsFragment, "tag")
+                        .addToBackStack(null)
+                        .commit();
+                HomeActivity.bottomNavigationView.setVisibility(View.GONE);
+            }
+        });
 
         cvLearn.setOnClickListener(new View.OnClickListener() {
             @Override

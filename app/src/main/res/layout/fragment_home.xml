@@ -22,9 +22,9 @@
                 android:layout_height="50dp"
                 android:layout_alignParentLeft="true"
                 android:layout_marginStart="10dp"
-                android:tint="@color/black"
                 android:visibility="gone"
-                app:srcCompat="@drawable/aslapp_logo_notext" />
+                app:srcCompat="@drawable/aslapp_logo_notext"
+                app:tint="@color/black" />
 
             <TextView
                 android:id="@+id/tvName"
